@@ -42,6 +42,10 @@ footer: @iwantmyrealname
 
 ---
 
+#[fit] #code
+
+---
+
 ![fit](img/express04.png)
 
 ---
