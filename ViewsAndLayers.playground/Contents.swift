@@ -63,7 +63,9 @@ class ButtonView: UIView {
   
   private lazy var greenBackground: CAShapeLayer = {
     let layer = CAShapeLayer()
-    // TODO5
+    layer.path = Utils.pathForCircleInRect(rect: buttonLayer.frame, scaled: CGFloat.innerCircleRatio)
+    layer.fillColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+    layer.mask = createBadgeMaskLayer()
     return layer
   }()
   
@@ -116,11 +118,27 @@ class ButtonView: UIView {
   }
   
   private func animateToOn() {
-    // TODO5
+    let path = Utils.pathForCircleThatContains(rect: bounds)
+    let animation = CABasicAnimation(keyPath: "path")
+    animation.fromValue = greenBackground.path
+    animation.toValue = path
+    animation.duration = Double.animationDuration
+    animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+    
+    greenBackground.add(animation, forKey: "onAnimation")
+    greenBackground.path = path
   }
   
   private func animateToOff() {
-    // TODO5
+    let path = Utils.pathForCircleInRect(rect: buttonLayer.frame, scaled: CGFloat.innerCircleRatio)
+    let animation = CABasicAnimation(keyPath: "path")
+    animation.fromValue = greenBackground.path
+    animation.toValue = path
+    animation.duration = Double.animationDuration
+    animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+    
+    greenBackground.add(animation, forKey: "offAnimation")
+    greenBackground.path = path
   }
   
   private func showInProgress(_ show: Bool = true) {
