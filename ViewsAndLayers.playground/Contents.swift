@@ -40,9 +40,7 @@ class ButtonView: UIView {
   
   private lazy var outerCircle: CAShapeLayer = {
     let layer = CAShapeLayer()
-    layer.path = Utils.pathForCircleInRect(rect: buttonLayer.bounds, scaled: CGFloat.outerCircleRatio)
-    layer.fillColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-    layer.opacity = 0.4
+    // TODO
     return layer
   }()
   
