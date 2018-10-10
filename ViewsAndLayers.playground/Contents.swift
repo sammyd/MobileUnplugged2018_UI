@@ -26,7 +26,7 @@ class ButtonView: UIView {
   private let buttonLayer = CALayer()
   private lazy var innerCircle: CAShapeLayer = {
     let layer = CAShapeLayer()
-    layer.path = UIBezierPath(ovalIn: CGRect(centre: buttonLayer.bounds.centre, size: buttonLayer.bounds.size.rescale(CGFloat.innerCircleRatio))).cgPath
+    layer.path = Utils.pathForCircleInRect(rect: buttonLayer.bounds, scaled: CGFloat.innerCircleRatio)
     layer.fillColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     layer.shadowRadius = 15
     layer.shadowOpacity = 0.1
@@ -40,7 +40,7 @@ class ButtonView: UIView {
   
   private lazy var outerCircle: CAShapeLayer = {
     let layer = CAShapeLayer()
-    layer.path = UIBezierPath(ovalIn: CGRect(centre: buttonLayer.bounds.centre, size: buttonLayer.bounds.size.rescale(CGFloat.outerCircleRatio))).cgPath
+    layer.path = Utils.pathForCircleInRect(rect: buttonLayer.bounds, scaled: CGFloat.outerCircleRatio)
     layer.fillColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     layer.opacity = 0.4
     return layer
@@ -48,7 +48,7 @@ class ButtonView: UIView {
   
   private lazy var greenBackground: CAShapeLayer = {
     let layer = CAShapeLayer()
-    layer.path = UIBezierPath(ovalIn: CGRect(centre: buttonLayer.frame.centre, size: buttonLayer.bounds.size.rescale(CGFloat.innerCircleRatio))).cgPath
+    layer.path = Utils.pathForCircleInRect(rect: buttonLayer.frame, scaled: CGFloat.innerCircleRatio)
     layer.fillColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
     layer.mask = createBadgeMaskLayer()
     return layer
@@ -62,7 +62,7 @@ class ButtonView: UIView {
     
     let mask = CAShapeLayer()
     
-    mask.path = UIBezierPath(ovalIn: CGRect(centre: layer.bounds.centre, size: layer.bounds.size)).cgPath
+    mask.path = Utils.pathForCircleInRect(rect: layer.bounds, scaled: 1.0)
     mask.fillColor = UIColor.black.cgColor
     layer.mask = mask
     layer.isHidden = true
@@ -85,9 +85,6 @@ class ButtonView: UIView {
     return mask
   }
 
-
-  
-  
   enum State {
     case off
     case inProgress
@@ -121,7 +118,7 @@ class ButtonView: UIView {
   }
   
   private func animateToOn() {
-    let path = UIBezierPath(ovalIn: CGRect(centre: bounds.centre, size: bounds.smallestContainingSquare.size.rescale(sqrt(2)))).cgPath
+    let path = Utils.pathForCircleThatContains(rect: bounds)
     let animation = CABasicAnimation(keyPath: "path")
     animation.fromValue = greenBackground.path
     animation.toValue = path
@@ -130,19 +127,17 @@ class ButtonView: UIView {
     
     greenBackground.add(animation, forKey: "onAnimation")
     greenBackground.path = path
-
   }
   
   private func animateToOff() {
     let animation = CABasicAnimation(keyPath: "path")
     animation.fromValue = greenBackground.path
-    animation.toValue = UIBezierPath(ovalIn: CGRect(centre: buttonLayer.frame.centre, size: buttonLayer.bounds.size.rescale(CGFloat.innerCircleRatio))).cgPath
+    animation.toValue = Utils.pathForCircleInRect(rect: buttonLayer.frame, scaled: CGFloat.innerCircleRatio)
     animation.duration = Double.animationDuration
     animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
     
     greenBackground.add(animation, forKey: "offAnimation")
-    greenBackground.path = UIBezierPath(ovalIn: CGRect(centre: buttonLayer.frame.centre, size: buttonLayer.bounds.size.rescale(CGFloat.innerCircleRatio))).cgPath
-
+    greenBackground.path = Utils.pathForCircleInRect(rect: buttonLayer.frame, scaled: CGFloat.innerCircleRatio)
   }
   
   private func showInProgress(_ show: Bool = true) {
@@ -182,7 +177,7 @@ let button = ButtonView(frame: CGRect(x: 0, y: 0, width: 300, height: 300 / aspe
 // Present the view controller in the Live View window
 PlaygroundPage.current.liveView = button
 
-let connection = PseudoConnection { (state) in
+let connection = PseudoConnection(connectionTime: 5) { (state) in
   switch state {
   case .disconnected:
     print("Disconnected")

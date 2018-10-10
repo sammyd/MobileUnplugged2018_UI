@@ -1,7 +1,7 @@
 footer: @iwantmyrealname
 
 #[fit] Views & Animations:
-#[fit] Learning by
+#[fit] __Learning__ by
 #[fit] _Stealing_
 
 
@@ -9,12 +9,12 @@ footer: @iwantmyrealname
 
 ---
 
-# [fit] why
+# [fit] _why_
 # [fit] __steal?__
 
 ---
 
-#[fit] where to
+#[fit] _where_ to
 #[fit] __start?__
 
 ---
@@ -23,48 +23,111 @@ footer: @iwantmyrealname
 
 ---
 
+![fit](img/express01.png)
 
 ---
 
-![autoplay loop fit](img/maps.MOV)
+![fit](img/express02.png)
 
 ---
 
----
-
-#[fit] why
-#[fit] copy?
+![fit](img/express03.png)
 
 ---
 
-#[fit] where to
-#[fit] start?
+#[fit] Views -vs- layers
+#[fit] `CAShapeLayer`
+#[fit] `UIBezierPath`
+#[fit] Layer shadows
 
 ---
 
-#[fit] tips
-#[fit] &
-#[fit] tricks
+![fit](img/express04.png)
 
 ---
 
-#[fit] core
-#[fit] animation
-#[fit] layers
+#[fit] `CAShapeLayer`
+#[fit] `CAGradientLayer`
+#[fit] Layer masks
 
 ---
 
-#[fit] property
-#[fit] animators
+![fit original](img/PaintCodeIcon.png)
+
+PaintCode
 
 ---
 
-#[fit] view controller
-#[fit] transitions
+![fit original](img/KiteIcon.png)
+
+KiteApp
 
 ---
 
+#[fit] #code
+
+---
+
+![fit](img/express05.png)
+
+---
+
+![fit](img/express06.png)
+
+---
+
+![fit](img/express07.png)
+
+---
+
+![fit](img/express08.png)
+
+---
+
+#[fit] `CAGradientLayer`
+#[fit] Layer Masks
+#[fit] `CAAnimation`
+
+---
+
+#[fit] #code
+
+---
+
+![fit](img/express09.png)
+
+---
+
+#[fit] `CAAnimation`
+#[fit] Layer masks
+#[fit] `CAShapeLayer`
+
+---
+
+#[fit] __so__
+#[fit] what?
+
+---
+
+#[fit] learning
+
+---
+
+#[fit] practice
+
+---
+
+#[fit] mistakes
+
+---
+
+TODO: Ad for book?!
+
+---
 
 #[fit] @iwantmyrealname
 
-#[fit] [github.com/sammyd/MobileUnplugged2018_UI](https://github.com/sammyd/MobileUnplugged2018_UI)
+#[fit]~
+
+#[fit] [github.com/sammyd](https://github.com/sammyd/MobileUnplugged2018_UI)
+#[fit] [/MobileUnplugged2018_UI](https://github.com/sammyd/MobileUnplugged2018_UI)

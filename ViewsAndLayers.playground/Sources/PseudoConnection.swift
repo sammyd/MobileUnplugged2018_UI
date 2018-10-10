@@ -15,14 +15,16 @@ public final class PseudoConnection: NSObject {
   
   public typealias StateChange = ((State) -> ())
   private let stateChangeCallback: StateChange
+  private let connectionTime: Double
   
-  public init(stateChangeCallback: @escaping StateChange) {
+  public init(connectionTime: TimeInterval = 1, stateChangeCallback: @escaping StateChange) {
     self.stateChangeCallback = stateChangeCallback
+    self.connectionTime = connectionTime
   }
   
   public func connect() {
     state = .connecting
-    Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { [weak self] _ in
+    Timer.scheduledTimer(withTimeInterval: connectionTime, repeats: false) { [weak self] _ in
       self?.state = .connected
     }
   }
