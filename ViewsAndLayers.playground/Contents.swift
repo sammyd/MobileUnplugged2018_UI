@@ -46,14 +46,6 @@ class ButtonView: UIView {
     return layer
   }()
   
-  private lazy var greenBackground: CAShapeLayer = {
-    let layer = CAShapeLayer()
-    layer.path = Utils.pathForCircleInRect(rect: buttonLayer.frame, scaled: CGFloat.innerCircleRatio)
-    layer.fillColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-    layer.mask = createBadgeMaskLayer()
-    return layer
-  }()
-  
   private lazy var inProgressLayer: CAGradientLayer = {
     let layer = CAGradientLayer()
     layer.colors = [#colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1), UIColor(white: 1, alpha: 0)].map{ $0.cgColor }
@@ -66,6 +58,12 @@ class ButtonView: UIView {
     mask.fillColor = UIColor.black.cgColor
     layer.mask = mask
     layer.isHidden = true
+    return layer
+  }()
+  
+  private lazy var greenBackground: CAShapeLayer = {
+    let layer = CAShapeLayer()
+    // TODO
     return layer
   }()
   
@@ -118,26 +116,11 @@ class ButtonView: UIView {
   }
   
   private func animateToOn() {
-    let path = Utils.pathForCircleThatContains(rect: bounds)
-    let animation = CABasicAnimation(keyPath: "path")
-    animation.fromValue = greenBackground.path
-    animation.toValue = path
-    animation.duration = Double.animationDuration
-    animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-    
-    greenBackground.add(animation, forKey: "onAnimation")
-    greenBackground.path = path
+    // TODO
   }
   
   private func animateToOff() {
-    let animation = CABasicAnimation(keyPath: "path")
-    animation.fromValue = greenBackground.path
-    animation.toValue = Utils.pathForCircleInRect(rect: buttonLayer.frame, scaled: CGFloat.innerCircleRatio)
-    animation.duration = Double.animationDuration
-    animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-    
-    greenBackground.add(animation, forKey: "offAnimation")
-    greenBackground.path = Utils.pathForCircleInRect(rect: buttonLayer.frame, scaled: CGFloat.innerCircleRatio)
+    // TODO
   }
   
   private func showInProgress(_ show: Bool = true) {
