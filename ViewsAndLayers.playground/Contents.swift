@@ -24,7 +24,18 @@ fileprivate extension Double {
 
 class ButtonView: UIView {
   private let buttonLayer = CALayer()
-  // TODO1
+  private lazy var innerCircle: CAShapeLayer = {
+    let layer = CAShapeLayer()
+    layer.path = Utils.pathForCircleInRect(rect: buttonLayer.bounds, scaled: CGFloat.innerCircleRatio)
+    layer.fillColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    layer.shadowRadius = 15
+    layer.shadowOffset = CGSize(width: 15, height: 10)
+    layer.shadowOpacity = 0.1
+    layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    layer.strokeColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+    layer.lineWidth = 3
+    return layer
+  }()
   
   private lazy var outerCircle: CAShapeLayer = {
     let layer = CAShapeLayer()
@@ -113,7 +124,7 @@ class ButtonView: UIView {
     buttonLayer.frame = bounds.largestContainedSquare.offsetBy(dx: 0, dy: -20)
     buttonLayer.addSublayer(outerCircle)
     buttonLayer.addSublayer(inProgressLayer)
-    // TODO1
+    buttonLayer.addSublayer(innerCircle)
     
     layer.addSublayer(badgeLayer)
     layer.addSublayer(greenBackground)
