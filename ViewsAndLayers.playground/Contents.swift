@@ -24,48 +24,36 @@ fileprivate extension Double {
 
 class ButtonView: UIView {
   private let buttonLayer = CALayer()
-  private lazy var innerCircle: CAShapeLayer = {
-    let layer = CAShapeLayer()
-    layer.path = Utils.pathForCircleInRect(rect: buttonLayer.bounds, scaled: CGFloat.innerCircleRatio)
-    layer.fillColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-    layer.shadowRadius = 15
-    layer.shadowOpacity = 0.1
-    layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-    layer.shadowOffset = CGSize(width: 15, height: 25)
-    layer.lineWidth = 3
-    layer.strokeColor = #colorLiteral(red: 0.6670270491, green: 0.6670270491, blue: 0.6670270491, alpha: 1)
-    layer.opacity = 1.0
-    return layer
-  }()
+  // TODO1
   
   private lazy var outerCircle: CAShapeLayer = {
     let layer = CAShapeLayer()
-    // TODO
+    // TODO2
     return layer
   }()
   
   private lazy var inProgressLayer: CAGradientLayer = {
     let layer = CAGradientLayer()
-    // TODO
+    // TODO4
     return layer
   }()
   
   private lazy var greenBackground: CAShapeLayer = {
     let layer = CAShapeLayer()
-    // TODO
+    // TODO5
     return layer
   }()
   
   private lazy var badgeLayer: CAGradientLayer = {
     let layer = CAGradientLayer()
-    // TODO
+    // TODO3
     return layer
   }()
   
   private func createBadgeMaskLayer() -> CAShapeLayer {
     let scale = self.layer.bounds.width / UIBezierPath.badgePath.bounds.width
     let mask = CAShapeLayer()
-    // TODO
+    // TODO3
     return mask
   }
 
@@ -102,20 +90,20 @@ class ButtonView: UIView {
   }
   
   private func animateToOn() {
-    // TODO
+    // TODO5
   }
   
   private func animateToOff() {
-    // TODO
+    // TODO5
   }
   
   private func showInProgress(_ show: Bool = true) {
     if show {
       inProgressLayer.isHidden = false
-      // TODO
+      // TODO4
     } else {
       inProgressLayer.isHidden = true
-      // TODO
+      // TODO4
     }
   }
 
@@ -125,7 +113,7 @@ class ButtonView: UIView {
     buttonLayer.frame = bounds.largestContainedSquare.offsetBy(dx: 0, dy: -20)
     buttonLayer.addSublayer(outerCircle)
     buttonLayer.addSublayer(inProgressLayer)
-    buttonLayer.addSublayer(innerCircle)
+    // TODO1
     
     layer.addSublayer(badgeLayer)
     layer.addSublayer(greenBackground)
