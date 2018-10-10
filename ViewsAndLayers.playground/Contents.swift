@@ -37,6 +37,15 @@ class ButtonView: UIView {
     layer.opacity = 1.0
     return layer
   }()
+  
+  private lazy var outerCircle: CAShapeLayer = {
+    let layer = CAShapeLayer()
+    layer.path = UIBezierPath(ovalIn: CGRect(centre: buttonLayer.bounds.centre, size: buttonLayer.bounds.size.rescale(CGFloat.outerCircleRatio))).cgPath
+    layer.fillColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    layer.opacity = 0.4
+    return layer
+  }()
+
 
   
   override init(frame: CGRect) {
@@ -52,6 +61,7 @@ class ButtonView: UIView {
   private func configureLayers() {
     backgroundColor = #colorLiteral(red: 0.9600390625, green: 0.9600390625, blue: 0.9600390625, alpha: 1)
     buttonLayer.frame = bounds.largestContainedSquare.offsetBy(dx: 0, dy: -20)
+    buttonLayer.addSublayer(outerCircle)
     buttonLayer.addSublayer(innerCircle)
     
     layer.addSublayer(buttonLayer)
