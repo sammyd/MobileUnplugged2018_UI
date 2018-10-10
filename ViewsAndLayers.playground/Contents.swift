@@ -48,16 +48,7 @@ class ButtonView: UIView {
   
   private lazy var inProgressLayer: CAGradientLayer = {
     let layer = CAGradientLayer()
-    layer.colors = [#colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1), UIColor(white: 1, alpha: 0)].map{ $0.cgColor }
-    layer.locations = [0, 0.7].map { NSNumber(floatLiteral: $0) }
-    layer.frame = CGRect(centre: buttonLayer.bounds.centre, size: buttonLayer.bounds.size.rescale(CGFloat.inProgressRatio))
-    
-    let mask = CAShapeLayer()
-    
-    mask.path = Utils.pathForCircleInRect(rect: layer.bounds, scaled: 1.0)
-    mask.fillColor = UIColor.black.cgColor
-    layer.mask = mask
-    layer.isHidden = true
+    // TODO
     return layer
   }()
   
@@ -125,16 +116,11 @@ class ButtonView: UIView {
   
   private func showInProgress(_ show: Bool = true) {
     if show {
-      let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-      animation.fromValue = 0
-      animation.toValue = 2 * Double.pi
-      animation.duration = Double.inProgressPeriod
-      animation.repeatCount = .greatestFiniteMagnitude
-      inProgressLayer.add(animation, forKey: "inProgressAnimation")
       inProgressLayer.isHidden = false
+      // TODO
     } else {
       inProgressLayer.isHidden = true
-      inProgressLayer.removeAnimation(forKey: "inProgressAnimation")
+      // TODO
     }
   }
 
