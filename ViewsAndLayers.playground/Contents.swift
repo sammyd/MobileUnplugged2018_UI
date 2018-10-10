@@ -45,7 +45,34 @@ class ButtonView: UIView {
     layer.opacity = 0.4
     return layer
   }()
-
+  
+  private lazy var greenBackground: CAShapeLayer = {
+    let layer = CAShapeLayer()
+    layer.path = UIBezierPath(ovalIn: CGRect(centre: bounds.centre, size: bounds.smallestContainingSquare.size.rescale(sqrt(2)))).cgPath
+    layer.fillColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+    layer.isHidden = true
+    return layer
+  }()
+  
+  
+  enum State {
+    case off
+    case inProgress
+    case on
+  }
+  
+  public var state: State = .off {
+    didSet {
+      switch state {
+      case .inProgress:
+        break
+      case .on:
+        animateToOn()
+      case .off:
+        animateToOff()
+      }
+    }
+  }
 
   
   override init(frame: CGRect) {
@@ -58,12 +85,21 @@ class ButtonView: UIView {
     configureLayers()
   }
   
+  private func animateToOn() {
+    greenBackground.isHidden = false
+  }
+  
+  private func animateToOff() {
+    greenBackground.isHidden = true
+  }
+  
   private func configureLayers() {
     backgroundColor = #colorLiteral(red: 0.9600390625, green: 0.9600390625, blue: 0.9600390625, alpha: 1)
     buttonLayer.frame = bounds.largestContainedSquare.offsetBy(dx: 0, dy: -20)
     buttonLayer.addSublayer(outerCircle)
     buttonLayer.addSublayer(innerCircle)
     
+    layer.addSublayer(greenBackground)
     layer.addSublayer(buttonLayer)
   }
 }
@@ -80,10 +116,13 @@ let connection = PseudoConnection { (state) in
   switch state {
   case .disconnected:
     print("Disconnected")
+    button.state = .off
   case .connecting:
     print("Connecting")
+    button.state = .inProgress
   case .connected:
     print("Connected")
+    button.state = .on
   }
 }
 
