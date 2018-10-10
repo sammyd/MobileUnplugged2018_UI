@@ -40,14 +40,24 @@ class ButtonView: UIView {
   private lazy var outerCircle: CAShapeLayer = {
     let layer = CAShapeLayer()
     layer.path = Utils.pathForCircleInRect(rect: buttonLayer.bounds, scaled: CGFloat.outerCircleRatio)
-    layer.fillColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+    layer.fillColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
     layer.opacity = 0.4
     return layer
   }()
   
   private lazy var inProgressLayer: CAGradientLayer = {
     let layer = CAGradientLayer()
-    // TODO4
+    layer.colors = [#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1), UIColor(white: 1, alpha: 0)].map { $0.cgColor }
+    layer.frame = CGRect(centre: buttonLayer.bounds.centre, size: buttonLayer.bounds.size.rescale(CGFloat.inProgressRatio))
+    layer.locations = [0, 0.7].map { NSNumber(floatLiteral: $0) }
+    
+    let mask = CAShapeLayer()
+    mask.path = UIBezierPath(ovalIn: layer.bounds).cgPath
+    mask.fillColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    layer.mask = mask
+    
+    layer.isHidden = true
+    
     return layer
   }()
   
@@ -116,10 +126,15 @@ class ButtonView: UIView {
   private func showInProgress(_ show: Bool = true) {
     if show {
       inProgressLayer.isHidden = false
-      // TODO4
+      let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+      animation.fromValue = 0
+      animation.toValue = 2 * Double.pi
+      animation.duration = Double.inProgressPeriod
+      animation.repeatCount = .greatestFiniteMagnitude
+      inProgressLayer.add(animation, forKey: "inProgressAnimation")
     } else {
       inProgressLayer.isHidden = true
-      // TODO4
+      inProgressLayer.removeAnimation(forKey: "inProgressAnimation")
     }
   }
 
