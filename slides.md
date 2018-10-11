@@ -60,15 +60,24 @@ footer: @iwantmyrealname
 
 ---
 
-![fit original](img/PaintCodeIcon.png)
+![140% right original](img/PaintCodeIcon.png)
 
-PaintCode
+# PaintCode
+paintcodeapp.com
 
 ---
 
 ![fit original](img/KiteIcon.png)
 
-KiteApp
+# KiteApp
+kiteapp.co
+
+---
+
+![fit original](img/lottie.gif)
+
+# Lottie
+airbnb.io/lottie
 
 ---
 
