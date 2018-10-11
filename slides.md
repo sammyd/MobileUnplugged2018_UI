@@ -102,6 +102,14 @@ KiteApp
 
 ---
 
+![fit](img/express10.png)
+
+---
+
+![fit](img/express11.png)
+
+---
+
 #[fit] `CAAnimation`
 #[fit] Layer masks
 #[fit] `CAShapeLayer`
@@ -125,7 +133,72 @@ KiteApp
 
 ---
 
-TODO: Ad for book?!
+![autoplay loop fit](img/maps.MOV)
+
+---
+
+#[fit] Custom modal
+#[fit] Presentation controller
+#[fit] Transitioning delegate
+#[fit] Property animator
+
+---
+
+#[fit] _interactive_
+#[fit] map?
+
+---
+
+```swift
+override func hitTest(_ point: CGPoint,
+                   with event: UIEvent?) -> UIView? {
+  let hit = super.hitTest(point, with: event)
+  if hit != self {
+    return hit
+  }
+  for passthroughView in passthroughViews {
+    let hit = passthroughView.hitTest(
+      convert(point, to: passthroughView),
+      with: event)
+    if hit != .none {
+      return hit
+    }
+  }
+  return .none
+}
+```
+
+---
+
+#[fit] __incorrect__
+#[fit] model
+
+---
+
+#[fit] _maybe_
+#[fit] __contained__
+#[fit] view controllers
+
+---
+
+#[fit] _doesn't_
+#[fit] __matter__
+
+---
+
+#[fit] __learning__
+
+---
+
+#[fit] __practice__
+
+---
+
+#[fit] __mistakes__
+
+---
+
+![](img/iat.png)
 
 ---
 
