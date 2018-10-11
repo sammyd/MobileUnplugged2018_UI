@@ -46,6 +46,10 @@ footer: @iwantmyrealname
 
 ---
 
+![autoplay loop fit](img/express_vpn.MOV)
+
+---
+
 ![fit](img/express04.png)
 
 ---
@@ -69,6 +73,10 @@ KiteApp
 ---
 
 #[fit] #code
+
+---
+
+![autoplay loop fit](img/express_vpn.MOV)
 
 ---
 
@@ -98,6 +106,10 @@ KiteApp
 
 ---
 
+![autoplay loop fit](img/express_vpn.MOV)
+
+---
+
 ![fit](img/express09.png)
 
 ---
@@ -113,6 +125,10 @@ KiteApp
 #[fit] `CAAnimation`
 #[fit] Layer masks
 #[fit] `CAShapeLayer`
+
+---
+
+#[fit] #code
 
 ---
 
